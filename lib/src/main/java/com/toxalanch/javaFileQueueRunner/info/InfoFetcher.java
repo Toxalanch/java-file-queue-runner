@@ -6,5 +6,7 @@ public interface InfoFetcher {
 
     QueueObject fetchInfo();
 
-    void setInfo(QueueObject object);
+    int addInfo(QueueObject object);
+
+    QueueObject getObjectFromId(int sessionid);
 }

@@ -1,5 +1,7 @@
 package com.toxalanch.javaFileQueueRunner;
 
+import com.toxalanch.javaFileQueueRunner.info.InfoFetcherFactory;
+import com.toxalanch.javaFileQueueRunner.info.InfoFetcher;
 
 /**
  * Runner is the class and enterance to the java queue runner
@@ -11,6 +13,8 @@ package com.toxalanch.javaFileQueueRunner;
  * @since       1.0
  */
 public class Runner {
+
+    public static InfoFetcher fetcher = new InfoFetcherFactory().createFetcher();
     
     /**
      * Adds the information given to the Queue as a {@link QueueObject} and returns 
@@ -24,7 +28,7 @@ public class Runner {
      * @see         QueueObject
      */
     public int addToQueue(String pathToClasses, String mainClass) {
-        return -1;
+        return addToQueue(pathToClasses, mainClass, null);
     }
 
     /**
@@ -41,7 +45,8 @@ public class Runner {
      * @see         QueueObject
      */
     public int addToQueue(String pathToClasses, String mainClass, String username) {
-        return addToQueue(pathToClasses, mainClass);
+        QueueObject qObj = new QueueObject(pathToClasses, mainClass, username);
+        return fetcher.addInfo(qObj);
     }
 
 }
